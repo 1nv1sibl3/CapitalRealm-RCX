@@ -68,19 +68,32 @@
       margin-bottom: 20px;
       color: #dddddd;
     }
+    /* 2x bigger code box */
     .code {
       display: inline-block;
       font-family: Consolas, monospace;
-      font-size: 36px;           
+      font-size: 36px;
       font-weight: bold;
       background-color: #2F3136;
       color: #B9BBBE;
-      padding: 20px 32px;         
+      padding: 20px 32px;
       border-radius: 8px;
       border: 1px solid #23272A;
       margin-top: 15px;
       word-wrap: break-word;
-      line-height: 1.2;          
+      line-height: 1.2;
+      cursor: pointer;
+      user-select: none;
+    }
+    .copy-notification {
+      font-size: 14px;
+      color: #ffde00;
+      margin-top: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .copy-notification.show {
+      opacity: 1;
     }
     .footer {
       margin-top: 25px;
@@ -119,8 +132,9 @@
       <div class="title">Capital Realm</div>
     </div>
     <p class="description">Capital Realm is one of the best Minecraft servers. This is the redeem page for it.</p>
-    <p>Here is your unique redeem code</p>
+    <p>Here is your unique redeem code:</p>
     <div class="code" id="codeDisplay">Loading...</div>
+    <div id="copyNotification" class="copy-notification">Text copied</div>
   </div>
   <div class="footer">
     <p>Connect with us:
@@ -136,7 +150,26 @@
       const code = params.get("code");
       document.getElementById("codeDisplay").textContent = code ? code : "No Code Provided";
     }
-    window.onload = getCodeFromURL;
+    
+    window.onload = function() {
+      getCodeFromURL();
+      const codeElement = document.getElementById("codeDisplay");
+      const notification = document.getElementById("copyNotification");
+      
+      codeElement.addEventListener("click", function() {
+        const text = codeElement.textContent;
+        navigator.clipboard.writeText(text)
+          .then(() => {
+            notification.classList.add("show");
+            setTimeout(() => {
+              notification.classList.remove("show");
+            }, 2000);
+          })
+          .catch(err => {
+            console.error("Error copying text: ", err);
+          });
+      });
+    }
   </script>
 </body>
 </html>
