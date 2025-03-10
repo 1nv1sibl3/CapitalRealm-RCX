@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:title" content="Capital Realm - Redeem Page" />
+  <meta property="og:description" content="Capital Realm is one of the best Minecraft servers. This is the redeem page for it." />
+  <title>Redeem Your Code - Capital Realm</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(45deg, #003973, #E5E5BE);
+      background-size: 200% 200%;
+      animation: gradientBG 10s ease infinite;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      justify-content: center;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .container {
+      background: linear-gradient(145deg, #1c1c1c, #292929);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6), -5px -5px 15px rgba(50, 50, 50, 0.2);
+      display: inline-block;
+      max-width: 90%;
+      width: 450px;
+      position: relative;
+    }
+    .title-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #ffde00, #ffa500, #ff4500);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      font-family: 'Press Start 2P', cursive;
+      animation: gradientAnimation 3s infinite alternate;
+    }
+    @keyframes gradientAnimation {
+      0% { background-position: 0%; }
+      100% { background-position: 100%; }
+    }
+    .description {
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: #dddddd;
+    }
+    .code {
+      display: inline-block;
+      font-family: Consolas, monospace;
+      font-size: 36px;           
+      font-weight: bold;
+      background-color: #2F3136;
+      color: #B9BBBE;
+      padding: 20px 32px;         
+      border-radius: 8px;
+      border: 1px solid #23272A;
+      margin-top: 15px;
+      word-wrap: break-word;
+      line-height: 1.2;          
+    }
+    .footer {
+      margin-top: 25px;
+      font-size: 14px;
+      color: #bbbbbb;
+    }
+    .footer a {
+      color: #ffde00;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 10px;
+      display: inline;
+    }
+    @media (max-width: 500px) {
+      .container {
+        width: 90%;
+      }
+      .title {
+        font-size: 20px;
+      }
+      .logo {
+        width: 40px;
+        height: 40px;
+      }
+      .code {
+        font-size: 28px;
+        padding: 16px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title-container">
+      <img src="logo.png" alt="Capital Realm Logo" class="logo" />
+      <div class="title">Capital Realm</div>
+    </div>
+    <p class="description">Capital Realm is one of the best Minecraft servers. This is the redeem page for it.</p>
+    <p>Here is your unique redeem code</p>
+    <div class="code" id="codeDisplay">Loading...</div>
+  </div>
+  <div class="footer">
+    <p>Connect with us:
+      <a href="https://discord.capitalrealm.fun">Discord</a> |
+      <a href="https://www.youtube.com/@CapitalRealm-Official">YouTube</a> |
+      <a href="mailto:capitalrealm1@gmail.com">Email Us</a>
+    </p>
+  </div>
+
+  <script>
+    function getCodeFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code");
+      document.getElementById("codeDisplay").textContent = code ? code : "No Code Provided";
+    }
+    window.onload = getCodeFromURL;
+  </script>
+</body>
+</html>
